@@ -8,7 +8,8 @@ def filter_custom(l, f):
     :param f: a function that takes one argument and returns either
         True or False
     '''
-    pass
+    filtered_list = [e for e in l if f(e)]
+    return filtered_list
 
 def map_custom(l, f):
     '''Map a list using a function
@@ -18,7 +19,11 @@ def map_custom(l, f):
     :param l: a list
     :param f: a function that takes one argument and returns a value'''
 
-    pass
+#    new_list = []
+#    for e in l:
+#        new_list.append(f(e))
+    new_list = [f(e) for e in l]
+    return new_list
 
 def reduce_custom(l, f, starting_value):
     '''Reduce a list using a reducer function and a starting value
@@ -33,5 +38,21 @@ def reduce_custom(l, f, starting_value):
     :param starting_value: the beginning value for the reducer function
         computation
     '''
-    pass
+
+    reduced_list = [e for e in l if f(v, e)]
+    return reduced_list
+
+if __name__ == '__main__':
+    l = [7,8,9]
+    f = lambda x: x * 10
+    print(map_custom(l,f))
+
+    def f(e):
+        if e + 1 > 8:
+            return True
+        else:
+            return False
+    print(filter_custom(l, f))
+
+
 
