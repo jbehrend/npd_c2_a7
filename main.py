@@ -39,20 +39,28 @@ def reduce_custom(l, f, starting_value):
         computation
     '''
 
-    reduced_list = [e for e in l if f(v, e)]
+    reduced_list = []
+    v = starting_value
+
+    for e in l:
+        reduced_list.append(f(v,e))
+        v = f(v, e)
     return reduced_list
 
 if __name__ == '__main__':
     l = [7,8,9]
-    f = lambda x: x * 10
-    print(map_custom(l,f))
+#    f = lambda x: x * 10
+#    print(map_custom(l,f))
 
-    def f(e):
-        if e + 1 > 8:
-            return True
-        else:
-            return False
-    print(filter_custom(l, f))
+#    def f(e):
+#        if e + 1 > 8:
+#            return True
+#        else:
+#            return False
+#    print(filter_custom(l, f))
 
+    starting_value = 500
 
-
+    def f(v, e):
+        return v + e
+    print(reduce_custom(l, f, starting_value))
